@@ -26,13 +26,14 @@ RUN mkdir -p ${HOME} && \
     gem install --no-rdoc --no-ri \
       fluentd:${FLUENTD_VERSION} \
       'activesupport:<5' \
+      'serverengine:1.6.4' \
       fluent-plugin-kubernetes_metadata_filter \
       fluent-plugin-elasticsearch \
       fluent-plugin-flatten-hash \
       fluent-plugin-systemd \
       fluent-plugin-splunk-ex \
       systemd-journal \
-      fluent-plugin-rewrite-tag-filter
+      fluent-plugin-rewrite-tag-filter || true
 
 ADD configs.d/ /etc/fluent/configs.d/
 ADD run.sh generate_throttle_configs.rb ${HOME}/
